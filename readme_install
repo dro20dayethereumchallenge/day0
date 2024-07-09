@@ -1,8 +1,24 @@
+# update the list of available packages.
+
 sudo apt-get update
+
+# install ca-certificates , curl and gnupg
+# ca-certificates (support for SSL encrption)
+# curl   (utility to leverage HTTP, FTP)
+# gnupg   ( GNU privacy guard - tool for secure communication) 
+
+
 sudo apt-get install -y ca-certificates curl gnupg
+
+# create a drectory to store keyring files ( to verify authenticity of packages ) 
 sudo mkdir -p /etc/apt/keyrings
+
+# download the access key for the nodesouce repository
+
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 NODE_MAJOR=22
+
+# add the nodesouce repository to your APT sources list. 
 echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
 sudo apt-get update
 sudo apt-get install nodejs -y
